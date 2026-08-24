@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>城市一隅</title>
+    <title>拾页集 · 手作阅读</title>
     <style>
         /* ========== 基础 ========== */
         :root {
@@ -314,25 +314,26 @@
             font-family: "Courier New", "Kaiti SC", monospace;
         }
 
-        /* 关于我 */
-        .about-me p {
+        /* 关于本站 */
+        .about-site p {
             font-size: 0.82rem;
             color: var(--ink-light);
             line-height: 1.7;
             text-align: justify;
         }
 
-        .about-me .signature {
+        .about-site .site-signature {
             font-family: "Comic Sans MS", "Kaiti SC", "楷体", cursive;
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: var(--accent);
             display: block;
             margin-top: 0.6rem;
             transform: rotate(-3deg);
             text-align: right;
+            letter-spacing: 0.1em;
         }
 
-        /* 最近评论 */
+        /* 最新讨论 */
         .recent-comments ul {
             list-style: none;
         }
@@ -416,7 +417,6 @@
 
         .site-footer .coffee {
             display: inline-block;
-            animation: none;
             font-size: 0.9rem;
         }
 
@@ -541,34 +541,34 @@
 
         <!-- 便签 -->
         <div class="sticky-note sticky-note-left">
-            记得把窗台上的薄荷浇一下，快蔫了。
+            所有的大人都曾经是小孩，虽然只有少数人记得。
         </div>
 
         <!-- ===== 头部 ===== -->
         <header class="site-header">
-            <span class="scribble scribble-1">—— 写着玩儿的</span>
+            <span class="scribble scribble-1">—— 慢慢写，不赶时间</span>
             <a href="#" class="site-title">
-                城市一隅
-                <span class="tilt">zine</span>
+                拾页集
+                <span class="tilt">note</span>
             </a>
-            <div class="site-tagline">读书 · 散步 · 偶尔写点代码</div>
+            <div class="site-tagline">读书 · 观察 · 一些不成体系的分享</div>
 
             <nav class="site-nav">
                 <a href="#" class="active">首页</a>
                 <a href="#">文章</a>
                 <a href="#">笔记</a>
-                <a href="#">关于</a>
+                <a href="#">关于本站</a>
                 <a href="#">留言</a>
             </nav>
 
-            <span class="scribble scribble-2">上次改版还是2019年</span>
+            <span class="scribble scribble-2">保持阅读，保持好奇</span>
         </header>
 
         <!-- ===== 日期天气 ===== -->
         <div class="meta-bar">
             <span>📅 2026年8月24日 · 星期一</span>
             <span><span class="weather-dot"></span> 晴，27°C，湿度61%</span>
-            <span>☕ 今天已经喝了三杯咖啡</span>
+            <span>📖 今日适宜：读诗、喝茶、发呆</span>
         </div>
 
         <!-- ===== 主内容 ===== -->
@@ -577,18 +577,18 @@
             <!-- 左侧：文章列表 -->
             <main class="post-list">
 
-                <h2 class="post-list-heading">最近写的</h2>
+                <h2 class="post-list-heading">最新发布</h2>
 
                 <!-- 文章1 -->
                 <article class="post-item featured">
                     <span class="post-date">2026.08.22</span>
                     <a href="#" class="post-title">
-                        在旧书店淘到一本1983年的《植物图鉴》
+                        论纸质书与电子书的阅读体验差异
                         <span class="arrow">→</span>
                     </a>
-                    <span class="post-tag">#淘书</span>
+                    <span class="post-tag">#阅读</span>
                     <p class="post-excerpt">
-                        店主说这本书在架子上躺了快二十年，扉页上还有上一个主人的铅笔笔记，画了一朵歪歪扭扭的蒲公英。我本来只是路过躲雨，结果出来的时候雨停了，手里多了本书。
+                        纸质书的触感、油墨味和翻页的声响构成了一种独特的仪式感，而电子书的便携与检索能力则更适合碎片化阅读。两者并非替代关系，而是不同场景下的互补。
                     </p>
                 </article>
 
@@ -596,12 +596,12 @@
                 <article class="post-item">
                     <span class="post-date">2026.08.18</span>
                     <a href="#" class="post-title">
-                        记一次失败的烤面包实验
+                        如何泡一杯不苦的茶：水温、时间与茶叶量的平衡
                         <span class="arrow">→</span>
                     </a>
-                    <span class="post-tag">#厨房</span>
+                    <span class="post-tag">#生活</span>
                     <p class="post-excerpt">
-                        按照网上的方子，说好四十分钟，我烤了一小时二十分钟，底还是生的。最后吃了一周的面包干，配咖啡倒也不算太糟。
+                        很多人觉得茶苦，其实往往是水温过高或浸泡时间过长。绿茶用80℃左右的水，红茶可以稍高，乌龙茶则需要沸水激发香气。掌握几个关键变量，就能得到一杯温和的茶汤。
                     </p>
                 </article>
 
@@ -609,12 +609,12 @@
                 <article class="post-item">
                     <span class="post-date">2026.08.12</span>
                     <a href="#" class="post-title">
-                        重读《局外人》的一点零碎想法
+                        城市里的野草观察笔记：从墙角到柏油路的缝隙
                         <span class="arrow">→</span>
                     </a>
-                    <span class="post-tag">#读书</span>
+                    <span class="post-tag">#自然</span>
                     <p class="post-excerpt">
-                        以前觉得默尔索冷漠，现在觉得他可能是太诚实了。这个世界有时候惩罚的就是不肯演戏的人。
+                        即使在高度人工化的城市环境中，野草依然能找到生存空间。它们从墙缝、路沿、花坛边缘钻出来，展现出惊人的适应力。观察它们，也是对城市生态的一种反思。
                     </p>
                 </article>
 
@@ -622,12 +622,12 @@
                 <article class="post-item">
                     <span class="post-date">2026.08.05</span>
                     <a href="#" class="post-title">
-                        给老笔记本电脑换了个风扇
+                        旧物修理：从一把摇晃的木椅说起
                         <span class="arrow">→</span>
                     </a>
-                    <span class="post-tag">#折腾</span>
+                    <span class="post-tag">#手作</span>
                     <p class="post-excerpt">
-                        拆开之后发现里面全是灰，怪不得每次开机像开拖拉机。花了一个下午，装回去发现多出来三颗螺丝，但机器居然能跑，我就当没看见。
+                        修理一件旧物，不仅仅是恢复它的功能，更是在对抗“坏了就换”的消费逻辑。一把摇晃的木椅，可能只需要重新楔入一块木片，就能再用十年。
                     </p>
                 </article>
 
@@ -635,19 +635,19 @@
                 <article class="post-item">
                     <span class="post-date">2026.07.28</span>
                     <a href="#" class="post-title">
-                        关于这条街上的那棵枇杷树
+                        重读《小王子》：献给大人的童话
                         <span class="arrow">→</span>
                     </a>
-                    <span class="post-tag">#日常</span>
+                    <span class="post-tag">#读书</span>
                     <p class="post-excerpt">
-                        每年五月都有人拿竹竿去敲，主人也不管。今年我路过的时候，地上落了一地，捡了几个回家，酸得倒牙，但很有夏天的味道。
+                        小时候读《小王子》，只觉得是一个有趣的星际旅行故事。长大后重读，才发现那些关于爱、责任和孤独的隐喻。这本书一直在等待它的读者长大。
                     </p>
                 </article>
 
                 <!-- 更多链接 -->
                 <div style="margin-top: 1.8rem; text-align: center;">
                     <a href="#" style="font-size: 0.85rem; color: var(--ink-faint); text-decoration: none; border-bottom: 1px dotted var(--line); padding-bottom: 0.2rem; letter-spacing: 0.1em;">
-                        更多文章 → 翻翻存档
+                        浏览全部文章 → 进入存档
                     </a>
                 </div>
 
@@ -658,43 +658,43 @@
             <!-- 右侧：侧边栏 -->
             <aside class="sidebar">
 
-                <!-- 关于我 -->
-                <div class="sidebar-card about-me">
-                    <h3>关于我</h3>
+                <!-- 关于本站 -->
+                <div class="sidebar-card about-site">
+                    <h3>关于本站</h3>
                     <p>
-                        张某某，1994年生人，现居杭州。白天在一家小公司写后端，晚上研究怎么把花养活。这个博客从2019年开始写，没什么主题，想到什么写什么。
+                        这是一个独立维护的阅读与观察手记，关注书籍、自然、生活美学与一些不紧急的思考。无广告，不追踪，尽量保持内容纯粹。更新不定期，但一直都在。
                     </p>
-                    <span class="signature">—— 老张</span>
+                    <span class="site-signature">—— 拾页集</span>
                 </div>
 
-                <!-- 最近评论 -->
+                <!-- 最新讨论 -->
                 <div class="sidebar-card recent-comments">
-                    <h3>最近评论</h3>
+                    <h3>最新讨论</h3>
                     <ul>
                         <li>
-                            <span class="commenter">小李：</span>
-                            <span class="comment-text">"面包那个真的笑死我了，建议改叫面包干专栏"</span>
+                            <span class="commenter">读者A：</span>
+                            <span class="comment-text">"关于茶叶水温那篇很实用，原来我一直用错了方法。"</span>
                         </li>
                         <li>
-                            <span class="commenter">阿芳：</span>
-                            <span class="comment-text">"枇杷树那篇看哭了，我外婆家也有一棵"</span>
+                            <span class="commenter">过路人：</span>
+                            <span class="comment-text">"野草观察的视角很独特，城市里确实有很多被忽视的生命。"</span>
                         </li>
                         <li>
-                            <span class="commenter">王工：</span>
-                            <span class="comment-text">"风扇教程有用，就是螺丝多出来的问题怎么解决？"</span>
+                            <span class="commenter">某编辑：</span>
+                            <span class="comment-text">"旧物修理的理念值得推广，现在的人太容易放弃了。"</span>
                         </li>
                     </ul>
                 </div>
 
                 <!-- 友链 -->
                 <div class="sidebar-card friend-links">
-                    <h3>常去的地方</h3>
+                    <h3>友情链接</h3>
                     <ul>
-                        <li><span class="link-dot"></span><a href="#">阿芳的菜园子</a></li>
-                        <li><span class="link-dot"></span><a href="#">某位前同事的博客</a></li>
-                        <li><span class="link-dot"></span><a href="#">城西旧书店</a></li>
-                        <li><span class="link-dot"></span><a href="#">一个做木工的朋友</a></li>
-                        <li><span class="link-dot"></span><a href="#">邻居家的猫（不是网站）</a></li>
+                        <li><span class="link-dot"></span><a href="#">独立阅读空间</a></li>
+                        <li><span class="link-dot"></span><a href="#">城市漫步指南</a></li>
+                        <li><span class="link-dot"></span><a href="#">纸页之间</a></li>
+                        <li><span class="link-dot"></span><a href="#">慢生活手帖</a></li>
+                        <li><span class="link-dot"></span><a href="#">旧物研究所</a></li>
                     </ul>
                 </div>
 
@@ -705,11 +705,9 @@
         <!-- ===== 页脚 ===== -->
         <footer class="site-footer">
             <span class="copyright">
-                © 2019–2026 老张的角落
+                © 2026 拾页集
                 <span class="coffee">☕</span>
             </span>
-            <span>本站无广告 · 不追踪 · 纯手工更新</span>
-            <span>RSS 订阅</span>
         </footer>
 
     </div>
