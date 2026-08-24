@@ -1107,14 +1107,8 @@
 
     <script>
         (function() {
-            // ========== 播放列表配置 ==========
-            // 请将 music 目录下的音乐文件名（包括扩展名）填写在此数组中
-            const playlist = [
-                'song1.mp3',
-                'song2.mp3',
-                'song3.mp3'
-                // 例如：'我的音乐.mp3', 'another-song.ogg'
-            ];
+            // 播放列表由 scripts/generate_playlist.py 扫描 music/ 目录自动生成
+            let playlist = [];
 
             const audio = document.getElementById('audioElement');
             const playBtn = document.getElementById('playBtn');
@@ -1156,7 +1150,7 @@
                 if (playlist.length === 0) return;
                 currentIndex = (index + playlist.length) % playlist.length;
                 const songFile = playlist[currentIndex];
-                audio.src = 'music/' + songFile;
+                audio.src = 'music/' + encodeURIComponent(songFile);
                 musicTitle.textContent = songFile.replace(/\.[^/.]+$/, ''); // 去掉扩展名
                 audio.load();
                 if (isPlaying) {
@@ -1277,8 +1271,24 @@
                 return mins + ':' + (secs < 10 ? '0' : '') + secs;
             }
 
+            async function loadPlaylist() {
+                musicTitle.textContent = '加载中...';
+                try {
+                    const response = await fetch('music/playlist.json');
+                    if (!response.ok) throw new Error('playlist fetch failed');
+                    const data = await response.json();
+                    playlist = Array.isArray(data) ? data : [];
+                } catch (error) {
+                    playlist = [];
+                    musicTitle.textContent = '播放列表加载失败';
+                    console.error('Failed to load music playlist:', error);
+                    return;
+                }
+                initPlayer();
+            }
+
             // 启动
-            initPlayer();
+            loadPlaylist();
         })();
     </script>
 

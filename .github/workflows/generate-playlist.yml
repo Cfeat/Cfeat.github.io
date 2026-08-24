@@ -1,0 +1,31 @@
+name: Generate music playlist
+
+on:
+  push:
+    paths:
+      - "music/**"
+    paths-ignore:
+      - "music/playlist.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Generate playlist
+        run: python scripts/generate_playlist.py
+
+      - name: Commit playlist
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update music playlist"
+          file_pattern: music/playlist.json
