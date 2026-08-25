@@ -1,3 +1,19 @@
 ## 音乐添加
 
-往 music/ 丢新歌，再运行 python scripts/generate_playlist.py（或 push 后由 Actions 自动生成）即可。
+往 `music/` 丢新歌，再运行 `python scripts/generate_playlist.py`（或 push 后由 Actions 自动生成）即可。
+
+## 全站播放器
+
+任意页面在 `</body>` 前加入：
+
+```html
+<script src="./js/music-player.js"></script>
+```
+
+子目录页面请改为相对路径，例如：
+
+```html
+<script src="../js/music-player.js"></script>
+```
+
+支持：自动连播 / 单曲循环（互斥）、收起为右下角按钮、换页后尽量从断点续播。
