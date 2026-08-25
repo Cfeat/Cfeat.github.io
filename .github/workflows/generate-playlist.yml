@@ -3,9 +3,14 @@ name: Generate music playlist
 on:
   push:
     paths:
-      - "music/**"
-    paths-ignore:
-      - "music/playlist.json"
+      - "music/*.mp3"
+      - "music/*.ogg"
+      - "music/*.wav"
+      - "music/*.flac"
+      - "music/*.m4a"
+      - "music/*.aac"
+      - "music/*.webm"
+      - "scripts/generate_playlist.py"
   workflow_dispatch:
 
 permissions:
@@ -28,4 +33,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: update music playlist"
-          file_pattern: music/playlist.json
+          file_pattern: music/playlist.json music/tracks/*

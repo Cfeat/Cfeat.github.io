@@ -1125,6 +1125,21 @@
             let currentIndex = 0;
             let isPlaying = false;
             let lastVolume = 1; // 用于静音恢复
+            let playToken = 0;
+
+            function getTrack(index) {
+                return playlist[index] || null;
+            }
+
+            function trackTitle(track) {
+                if (!track) return '暂无歌曲';
+                return track.title || track.src || '未知歌曲';
+            }
+
+            function trackSrc(track) {
+                if (!track) return '';
+                return track.src || '';
+            }
 
             // 初始化播放器
             function initPlayer() {
@@ -1142,35 +1157,60 @@
                 volumeSlider.value = 1;
                 volumePercent.textContent = '100%';
                 volumeIcon.textContent = '🔊';
-                loadSong(currentIndex);
+                loadSong(currentIndex, false);
+            }
+
+            function playCurrent() {
+                const token = ++playToken;
+                const playPromise = audio.play();
+                if (playPromise && typeof playPromise.then === 'function') {
+                    playPromise.then(function() {
+                        if (token !== playToken) return;
+                        isPlaying = true;
+                        playBtn.textContent = '⏸';
+                    }).catch(function(error) {
+                        if (token !== playToken) return;
+                        isPlaying = false;
+                        playBtn.textContent = '▶';
+                        console.error('Audio play failed:', error);
+                        musicTitle.textContent = '播放失败，请重试';
+                    });
+                }
             }
 
             // 加载指定索引的歌曲
-            function loadSong(index) {
+            function loadSong(index, autoPlay) {
                 if (playlist.length === 0) return;
                 currentIndex = (index + playlist.length) % playlist.length;
-                const songFile = playlist[currentIndex];
-                audio.src = 'music/' + encodeURIComponent(songFile);
-                musicTitle.textContent = songFile.replace(/\.[^/.]+$/, ''); // 去掉扩展名
-                audio.load();
-                if (isPlaying) {
-                    audio.play();
-                } else {
-                    audio.pause();
+                const track = getTrack(currentIndex);
+                const src = trackSrc(track);
+                if (!src) {
+                    musicTitle.textContent = '无效曲目';
+                    return;
                 }
+
+                playToken += 1;
+                musicTitle.textContent = trackTitle(track);
+                audio.src = src;
                 progressSlider.value = 0;
                 currentTimeEl.textContent = '0:00';
                 durationEl.textContent = '0:00';
+
+                if (autoPlay || isPlaying) {
+                    playCurrent();
+                } else {
+                    audio.pause();
+                    playBtn.textContent = '▶';
+                }
             }
 
             // 播放/暂停
             function togglePlay() {
                 if (playlist.length === 0) return;
                 if (audio.paused) {
-                    audio.play();
-                    isPlaying = true;
-                    playBtn.textContent = '⏸';
+                    playCurrent();
                 } else {
+                    playToken += 1;
                     audio.pause();
                     isPlaying = false;
                     playBtn.textContent = '▶';
@@ -1180,15 +1220,13 @@
             // 上一首
             function prevSong() {
                 if (playlist.length === 0) return;
-                loadSong(currentIndex - 1);
-                if (isPlaying) audio.play();
+                loadSong(currentIndex - 1, isPlaying);
             }
 
             // 下一首
             function nextSong() {
                 if (playlist.length === 0) return;
-                loadSong(currentIndex + 1);
-                if (isPlaying) audio.play();
+                loadSong(currentIndex + 1, isPlaying);
             }
 
             // 更新进度条和时间显示
@@ -1217,6 +1255,13 @@
             audio.addEventListener('ended', function() {
                 // 自动播放下一首
                 nextSong();
+            });
+            audio.addEventListener('error', function() {
+                isPlaying = false;
+                playBtn.textContent = '▶';
+                const code = audio.error ? audio.error.code : 0;
+                musicTitle.textContent = '音频加载失败 (' + code + ')';
+                console.error('Audio element error:', audio.error, audio.currentSrc);
             });
             audio.addEventListener('play', function() {
                 isPlaying = true;
@@ -1274,10 +1319,27 @@
             async function loadPlaylist() {
                 musicTitle.textContent = '加载中...';
                 try {
-                    const response = await fetch('music/playlist.json');
+                    const response = await fetch('music/playlist.json', { cache: 'no-cache' });
                     if (!response.ok) throw new Error('playlist fetch failed');
                     const data = await response.json();
-                    playlist = Array.isArray(data) ? data : [];
+                    if (!Array.isArray(data)) {
+                        playlist = [];
+                    } else {
+                        playlist = data.map(function(item) {
+                            if (typeof item === 'string') {
+                                return {
+                                    title: item.replace(/\.[^/.]+$/, ''),
+                                    src: 'music/' + encodeURIComponent(item)
+                                };
+                            }
+                            return {
+                                title: item.title || '未知歌曲',
+                                src: item.src || ''
+                            };
+                        }).filter(function(item) {
+                            return !!item.src;
+                        });
+                    }
                 } catch (error) {
                     playlist = [];
                     musicTitle.textContent = '播放列表加载失败';
