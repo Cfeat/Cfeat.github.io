@@ -3,7 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>城市一隅</title>
+    <title>城市一隅 · 读书、观察与生活手记</title>
+    <meta name="description" content="城市一隅是一个独立维护的阅读与观察手记：记录书籍、自然、生活美学，也放着两个可以随手玩的小游戏。">
+    <meta name="author" content="Cfeat">
+    <link rel="canonical" href="https://www.cfeat.cc.cd/">
+    <link rel="me" href="https://github.com/Cfeat">
+    <meta name="theme-color" content="#f7f2e9">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23a63c2f'/%3E%3Crect x='6' y='6' width='52' height='52' rx='8' fill='none' stroke='%23f7f2e9' stroke-width='2'/%3E%3Ctext x='32' y='45' font-size='34' text-anchor='middle' fill='%23f7f2e9' font-family='serif'%3E%E9%9A%85%3C/text%3E%3C/svg%3E">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="城市一隅">
+    <meta property="og:title" content="城市一隅 · 读书、观察与生活手记">
+    <meta property="og:description" content="独立维护的阅读与观察手记：书籍、自然、生活美学，以及两个随手可玩的小游戏。">
+    <meta property="og:url" content="https://www.cfeat.cc.cd/">
+    <meta property="og:locale" content="zh_CN">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="城市一隅 · 读书、观察与生活手记">
+    <meta name="twitter:description" content="独立维护的阅读与观察手记：书籍、自然、生活美学，以及两个随手可玩的小游戏。">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebSite","name":"城市一隅","url":"https://www.cfeat.cc.cd/","description":"独立维护的阅读与观察手记","inLanguage":"zh-CN","author":{"@type":"Person","name":"Cfeat","url":"https://github.com/Cfeat"}}
+    </script>
     <style>
         /* ========== 基础 ========== */
         :root {
@@ -676,9 +694,165 @@
             user-select: none;
         }
 
+
+        /* ========== v2 优化 ========== */
+        .sticky-note {
+            display: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 1.5rem;
+        }
+
+        body {
+            padding-bottom: 3rem;
+        }
+
+        .site-title-h1 {
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: normal;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 1rem;
+            z-index: 10001;
+            background: var(--ink);
+            color: var(--paper);
+            padding: 0.55rem 1rem;
+            border-radius: 2px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: top 0.2s ease;
+        }
+
+        .skip-link:focus {
+            top: 1rem;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+        }
+
+        .post-title:focus-visible,
+        .site-nav a:focus-visible,
+        .game-card:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 4px;
+        }
+
+        .game-portal--after {
+            margin-top: 2.4rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid var(--line);
+            margin-bottom: 0.5rem;
+        }
+
+        .game-portal--after .game-card {
+            padding: 1.1rem 1rem;
+        }
+
+        .post-list,
+        .sidebar {
+            min-width: 0;
+        }
+
+        .post-item {
+            scroll-margin-top: 1.2rem;
+        }
+
+        .back-to-top {
+            margin-top: 1.8rem;
+            text-align: center;
+        }
+
+        .back-to-top a {
+            font-size: 0.85rem;
+            color: var(--ink-faint);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--line);
+            padding-bottom: 0.2rem;
+            letter-spacing: 0.1em;
+        }
+
+        .back-to-top a:hover {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .footer-meta {
+            display: inline-flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .footer-meta a {
+            color: var(--ink-light);
+            text-decoration: none;
+            border-bottom: 1px dotted transparent;
+        }
+
+        .footer-meta a:hover {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        @media (max-width: 680px) {
+            body {
+                padding: 1.2rem 1rem 4.5rem;
+            }
+
+            .site-title {
+                font-size: 2.1rem;
+            }
+
+            .site-nav {
+                gap: 1.1rem;
+                font-size: 0.9rem;
+            }
+
+            .meta-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+                margin-bottom: 1.6rem;
+            }
+
+            .post-title {
+                font-size: 1.2rem;
+            }
+
+            .post-excerpt {
+                max-width: 100%;
+                text-align: left;
+            }
+
+            .sidebar {
+                position: static;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <a class="skip-link" href="#posts">跳到正文</a>
 
     <div class="site-wrap">
 
@@ -692,75 +866,39 @@
         </div>
 
         <!-- ===== 头部 ===== -->
-        <header class="site-header">
-            <span class="scribble scribble-1">—— 慢慢写，不赶时间</span>
-            <a href="#" class="site-title">
-                城市一隅
-                <span class="tilt">note</span>
-            </a>
+        <header class="site-header" id="top">
+            <span class="scribble scribble-1" aria-hidden="true">—— 慢慢写，不赶时间</span>
+            <h1 class="site-title-h1">
+                <a href="/" class="site-title">
+                    城市一隅
+                    <span class="tilt">note</span>
+                </a>
+            </h1>
             <div class="site-tagline">读书 · 观察 · 一些不成体系的分享</div>
 
-            <nav class="site-nav">
-                <a href="#" class="active">首页</a>
-                <a href="#">文章</a>
-                <a href="#">笔记</a>
-                <a href="#">关于本站</a>
-                <a href="#">留言</a>
+            <nav class="site-nav" aria-label="主导航">
+                <a href="#top" class="active" aria-current="page">首页</a>
+                <a href="#posts">文章</a>
+                <a href="#games">游戏</a>
+                <a href="#about">关于本站</a>
+                <a href="#comments">留言</a>
             </nav>
 
-            <span class="scribble scribble-2">保持阅读，保持好奇</span>
+            <span class="scribble scribble-2" aria-hidden="true">保持阅读，保持好奇</span>
         </header>
 
         <!-- ===== 日期天气 ===== -->
         <div class="meta-bar">
-            <span>📅 2026年8月24日 · 星期一</span>
-            <span><span class="weather-dot"></span> 晴，27°C，湿度61%</span>
-            <span>📖 今日适宜：读诗、喝茶、发呆</span>
+            <span>📅 <span id="todayDate">2026年10月28日 · 星期三</span></span>
+            <span>📖 今日适宜：<span id="todayMood">读诗、喝茶、发呆</span></span>
         </div>
 
-        <!-- ===== 游戏工坊入口 ===== -->
-        <section class="game-portal">
-            <div class="portal-heading">
-                <span class="portal-title">🎲 游戏工坊</span>
-                <span class="portal-sub">两个小游戏，随便玩玩</span>
-            </div>
-            <div class="game-cards">
-                <a href="./Gomoku/" class="game-card gomoku-card">
-                    <div class="gomoku-icon">
-                        <span class="gomoku-dot black"></span>
-                        <span class="gomoku-dot white"></span>
-                        <span class="gomoku-dot black"></span>
-                        <span class="gomoku-dot white"></span>
-                        <span class="gomoku-dot black"></span>
-                        <span class="gomoku-dot white"></span>
-                        <span class="gomoku-dot black"></span>
-                        <span class="gomoku-dot white"></span>
-                        <span class="gomoku-dot black"></span>
-                    </div>
-                    <div class="game-info">
-                        <h3>五子棋</h3>
-                        <p>黑白落子，连五为胜。</p>
-                    </div>
-                    <div class="game-stamp">PLAY</div>
-                </a>
-                <a href="./Chess-/" class="game-card chess-card">
-                    <div class="chess-icon">
-                        <span>♞</span>
-                    </div>
-                    <div class="game-info">
-                        <h3>国际象棋</h3>
-                        <p>经典对弈，策略博弈。</p>
-                    </div>
-                    <div class="game-stamp">PLAY</div>
-                </a>
-            </div>
-        </section>
 
         <!-- ===== 主内容 ===== -->
         <div class="main-grid">
 
             <!-- 左侧：文章列表 -->
-            <main class="post-list">
+            <main class="post-list" id="posts">
 
                 <h2 class="post-list-heading">最新发布</h2>
 
@@ -824,20 +962,51 @@
                     </p>
                 </article>
 
-                <div style="margin-top: 1.8rem; text-align: center;">
-                    <a href="#" style="font-size: 0.85rem; color: var(--ink-faint); text-decoration: none; border-bottom: 1px dotted var(--line); padding-bottom: 0.2rem; letter-spacing: 0.1em;">
-                        浏览全部文章 → 进入存档
-                    </a>
-                </div>
 
-                <div class="divider-dots">···</div>
+                <!-- ===== 游戏工坊（正文之后，避免抢首屏） ===== -->
+                <section class="game-portal game-portal--after" id="games">
+                    <div class="portal-heading">
+                        <span class="portal-title">🎲 游戏工坊</span>
+                        <span class="portal-sub">两个小游戏，随便玩玩</span>
+                    </div>
+                    <div class="game-cards">
+                        <a href="./Gomoku/" class="game-card gomoku-card">
+                            <div class="gomoku-icon">
+                                <span class="gomoku-dot black"></span>
+                                <span class="gomoku-dot white"></span>
+                                <span class="gomoku-dot black"></span>
+                                <span class="gomoku-dot white"></span>
+                                <span class="gomoku-dot black"></span>
+                                <span class="gomoku-dot white"></span>
+                                <span class="gomoku-dot black"></span>
+                                <span class="gomoku-dot white"></span>
+                                <span class="gomoku-dot black"></span>
+                            </div>
+                            <div class="game-info">
+                                <h3>五子棋</h3>
+                                <p>黑白落子，连五为胜。</p>
+                            </div>
+                            <div class="game-stamp">PLAY</div>
+                        </a>
+                        <a href="./Chess-/" class="game-card chess-card">
+                            <div class="chess-icon">
+                                <span>♞</span>
+                            </div>
+                            <div class="game-info">
+                                <h3>国际象棋</h3>
+                                <p>经典对弈，策略博弈。</p>
+                            </div>
+                            <div class="game-stamp">PLAY</div>
+                        </a>
+                    </div>
+                </section>
 
             </main>
 
             <!-- 右侧：侧边栏 -->
             <aside class="sidebar">
 
-                <div class="sidebar-card about-site">
+                <div class="sidebar-card about-site" id="about">
                     <h3>关于本站</h3>
                     <p>
                         这是一个独立维护的阅读与观察手记，关注书籍、自然、生活美学与一些不紧急的思考。无广告，不追踪，尽量保持内容纯粹。更新不定期，但一直都在。
@@ -845,7 +1014,7 @@
                     <span class="site-signature">—— 城市一隅</span>
                 </div>
 
-                <div class="sidebar-card recent-comments">
+                <div class="sidebar-card recent-comments" id="comments">
                     <h3>最新讨论</h3>
                     <ul>
                         <li>
@@ -878,17 +1047,39 @@
 
         </div>
 
+
         <!-- ===== 页脚 ===== -->
         <footer class="site-footer">
             <span class="copyright">
-                © 2026 城市一隅
+                © <span id="year">2026</span> 城市一隅
                 <span class="coffee">☕</span>
+            </span>
+            <span class="footer-meta">
+                <a href="https://github.com/Cfeat" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <span aria-hidden="true">·</span>
+                <a href="#top">回到顶部</a>
             </span>
         </footer>
 
     </div>
 
-    <script src="./js/music-player.js"></script>
+    <script src="./js/music-player.js" defer></script>
+    <script>
+        (function () {
+            var d = new Date();
+            var week = '日一二三四五六'[d.getDay()];
+            var dateEl = document.getElementById('todayDate');
+            if (dateEl) {
+                dateEl.textContent = d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日 · 星期' + week;
+            }
+            var yearEl = document.getElementById('year');
+            if (yearEl) yearEl.textContent = d.getFullYear();
+
+            var moods = ['读诗、喝茶、发呆', '翻两页书，走一段路', '听雨，写字，不赶时间', '整理旧物，也整理心情', '晒太阳，喝一杯不苦的茶'];
+            var moodEl = document.getElementById('todayMood');
+            if (moodEl) moodEl.textContent = moods[d.getDate() % moods.length];
+        })();
+    </script>
 
 </body>
 </html>

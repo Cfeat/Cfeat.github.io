@@ -151,7 +151,7 @@
         root.id = 'cfeatMusicPlayer';
         // audio 必须放在可收起区域之外，避免 display:none 导致浏览器不加载媒体
         root.innerHTML = [
-            '<audio id="cfeatAudio" preload="metadata" playsinline></audio>',
+            '<audio id="cfeatAudio" preload="none" playsinline></audio>',
             '<button type="button" class="cfeat-music-fab" id="cfeatMusicFab" title="展开播放器" aria-label="展开播放器">♪</button>',
             '<div class="cfeat-music-body">',
             '  <div class="cfeat-music-head">',
@@ -476,7 +476,7 @@
         playMode = saved.mode === 'loop' || saved.mode === 'none' || saved.mode === 'sequence'
             ? saved.mode
             : 'sequence';
-        collapsed = !!saved.collapsed;
+        collapsed = saved.collapsed !== false; // 默认收起，避免遮挡正文
         pendingSeek = typeof saved.time === 'number' && isFinite(saved.time) ? saved.time : null;
         // 换页自动续播常被浏览器拦截，这里只恢复进度，由用户点击播放
         var wantResume = !!saved.playing;
@@ -521,10 +521,15 @@
                     return;
                 }
                 if (currentIndex >= playlist.length) currentIndex = 0;
-                loadSong(currentIndex, false, pendingSeek);
-                // 若之前在播放，尝试续播（失败则保持暂停，进度已恢复）
+                // 懒加载：首屏只显示曲名，不请求音频（单曲 9MB+）
+                lastTitle = trackTitle(playlist[currentIndex]);
+                titleEl.textContent = lastTitle;
+                durationEl.textContent = '0:00';
+                audio.preload = 'none';
+                syncPlayButton();
+                // 只有上次确实在播放时才恢复加载（浏览器可能拦截自动播放）
                 if (wantResume) {
-                    playCurrent();
+                    loadSong(currentIndex, true, pendingSeek);
                 }
             })
             .catch(function (err) {
